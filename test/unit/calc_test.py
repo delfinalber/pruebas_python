@@ -87,6 +87,12 @@ class TestCalculate(unittest.TestCase):
         self.assertEqual(0, self.calc.multiply(-1, 0))
         self.assertEqual(-2, self.calc.multiply(-1, 2))
 
+    @patch('app.util.validate_permissions', side_effect=mocked_validation, create=True)
+    def test_multiply_method_fails_with_nan_parameter(self, _validate_permissions):
+        self.assertRaises(TypeError, self.calc.multiply, "2", 2)
+        self.assertRaises(TypeError, self.calc.multiply, 2, "2")
+        self.assertRaises(TypeError, self.calc.multiply, "2", "2")
+
     @patch('app.util.validate_permissions', return_value=False, create=True)
     def test_multiply_method_fails_with_invalid_permissions(self, _validate_permissions):
         self.assertRaises(TypeError, self.calc.multiply, 2, 2)

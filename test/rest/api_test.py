@@ -55,8 +55,17 @@ class TestApi(unittest.TestCase):
     def test_api_add_bad_request(self):
         self._assert_bad_request("/calc/add/a/2")
 
+    def test_api_substract_bad_request(self):
+        self._assert_bad_request("/calc/substract/a/2")
+
+    def test_api_multiply_bad_request(self):
+        self._assert_bad_request("/calc/multiply/a/2")
+
     def test_api_divide_bad_request(self):
         self._assert_bad_request("/calc/divide/1/0")
+
+    def test_api_power_bad_request(self):
+        self._assert_bad_request("/calc/power/a/2")
 
     def test_api_sqrt_bad_request(self):
         self._assert_bad_request("/calc/sqrt/-1")
